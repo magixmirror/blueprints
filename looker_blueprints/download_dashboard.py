@@ -101,6 +101,7 @@ def main():
 
     with open(destination_file_path, 'wb+') as f:
         f.write(result)
+    print(f"file: {dest_file_name} created successfully")
 
 
 if __name__ == "__main__":
