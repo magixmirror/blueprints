@@ -8,6 +8,8 @@ except BaseException:
     from . import helpers
 
 
+EXIT_CODE_LOOK_ERROR = 204
+
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--base-url', dest='base_url', required=True)
@@ -35,6 +37,7 @@ def download_look(look_sdk, look_id, file_format):
         print(f"look {look_id} as {file_format} generated successfully")
     except Exception as e:
       raise Exception(f'Error running look {look_id}: {e}')
+      sys.exit(EXIT_CODE_LOOK_ERROR)
     if type(response) == 'str':
         response = bytes(response, encoding='utf-8')
     return response
