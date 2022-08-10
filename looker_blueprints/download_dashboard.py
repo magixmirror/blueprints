@@ -37,9 +37,9 @@ def download_dashboard(sdk, dashboard_id, width, height, file_format):
     Returns:
         result: raw binary data of the dashboard
     """
-    id = int(dashboard_id)
+    dash_id = dashboard_id
     task = sdk.create_dashboard_render_task(
-        id,
+        dash_id,
         file_format,
         models.CreateDashboardRenderTask(
             dashboard_style='tiled',
