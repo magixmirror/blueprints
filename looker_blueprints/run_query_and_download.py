@@ -16,7 +16,13 @@ def get_args():
     parser.add_argument('--base-url', dest='base_url', required=True)
     parser.add_argument('--client-id', dest='client_id', required=True)
     parser.add_argument('--client-secret', dest='client_secret', required=True)
-    parser.add_argument('--query-id', dest='query_id', required=False)
+    parser.add_argument('--query-id', dest='query_id', required=True)
+    parser.add_argument('--dest-file-name', dest='dest_file_name', required=True)
+    parser.add_argument('--dest-folder-name', dest='dest_folder_name', required=False)
+    parser.add_argument('--file-type', dest='file_type',
+                        choices=['json', 'json_detail','csv', 'html', 'xlsx', 'md', 'sql' ,'png', 'jpg'],
+                        type=str.lower,
+                        required=True)
     args = parser.parse_args()
     return args
 
@@ -44,6 +50,10 @@ def main():
     # get cwd if no folder name is specified
     if not dest_folder_name:
         dest_folder_name = os.getcwd()
+    else:
+        # create folder path if non-existent
+        shipyard.files.create_folder_if_dne(dest_folder_name)
+    
     destination_file_path = shipyard.files.combine_folder_and_file_name(
         dest_folder_name,
         dest_file_name
