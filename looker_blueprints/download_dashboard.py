@@ -4,7 +4,7 @@ import time
 import os
 import shipyard_utils as shipyard
 from looker_sdk import models
-from looker_sdk import sdk_exceptions
+from looker_sdk.error import SDKError
 try:
     import helpers
 except BaseException:
