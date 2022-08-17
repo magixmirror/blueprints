@@ -70,6 +70,9 @@ def main():
     result = run_sql_query_and_download(look_sdk, slug, file_type)
     
     with open(destination_file_path, 'wb+') as f:
+        # convert to bytes if str
+        if type(result) == str:
+            result = bytes(result, 'utf-8')
         f.write(result)
     print(f"query with file: {dest_file_name} created successfully!")
 
