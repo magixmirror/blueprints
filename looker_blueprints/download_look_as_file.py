@@ -38,7 +38,7 @@ def download_look(look_sdk, look_id, file_format):
     except Exception as e:
       raise Exception(f'Error running look {look_id}: {e}')
       sys.exit(EXIT_CODE_LOOK_ERROR)
-    if type(response) == 'str':
+    if type(response) == str:
         response = bytes(response, encoding='utf-8')
     return response
 
@@ -69,9 +69,6 @@ def main():
     result = download_look(look_sdk, look_id, file_format=file_type)
 
     with open(destination_file_path, 'wb+') as f:
-        # convert to bytes if str
-        if type(result) == str:
-            result = bytes(result, 'utf-8')
         f.write(result)
 
 
