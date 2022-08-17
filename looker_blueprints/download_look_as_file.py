@@ -69,6 +69,9 @@ def main():
     result = download_look(look_sdk, look_id, file_format=file_type)
 
     with open(destination_file_path, 'wb+') as f:
+        # convert to bytes if str
+        if type(result) == str:
+            result = bytes(result, 'utf-8')
         f.write(result)
 
 
