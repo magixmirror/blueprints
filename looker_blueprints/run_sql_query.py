@@ -44,14 +44,14 @@ def main():
     client_secret = args.client_secret
     file_type = args.file_type
     dest_file_name = args.dest_file_name
-    dest_folder_name = args.dest_folder_name
-    
+
     # get cwd if no folder name is specified
-    if dest_folder_name == "":
-        dest_folder_name = os.getcwd()
-    else:
+    if args.dest_folder_name:
         # create folder path if non-existent
-        shipyard.files.create_folder_if_dne(dest_folder_name)
+        shipyard.files.create_folder_if_dne(args.dest_folder_name)
+        dest_folder_name = args.dest_folder_name
+    else:
+        dest_folder_name = os.getcwd()
     
     destination_file_path = shipyard.files.combine_folder_and_file_name(
         dest_folder_name,
