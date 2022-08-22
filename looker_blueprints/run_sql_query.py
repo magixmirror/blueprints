@@ -30,7 +30,7 @@ def get_args():
 def run_sql_query_and_download(sdk, slug, file_format):
     try:
         response = sdk.run_sql_query(slug=slug, result_format=file_format)
-        print("SQL Query {slug} created successfully")
+        print(f"SQL Query {slug} created successfully")
     except Exception as e:
         print(f'Error running create query: {e}')
         sys.exit(EXIT_CODE_QUERY_ERROR)
