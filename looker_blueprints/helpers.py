@@ -3,7 +3,10 @@ import shipyard_utils as shipyard
 import looker_sdk
 from looker_sdk import api_settings
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> sc-3855/looker-run-sql-runner-query-and-download
 # create Artifacts folder paths
 base_folder_name = shipyard.logs.determine_base_artifact_folder(
     'looker')
@@ -42,4 +45,8 @@ def get_sdk(base_url, client_id, client_secret):
         client_secret=client_secret
         )
     )
+<<<<<<< HEAD
     return sdk
+=======
+    return sdk
+>>>>>>> sc-3855/looker-run-sql-runner-query-and-download
