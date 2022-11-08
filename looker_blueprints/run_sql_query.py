@@ -6,9 +6,10 @@ try:
     import helpers
 except BaseException:
     from . import helpers
-
-
-EXIT_CODE_QUERY_ERROR = 203
+try:
+    import exit_codes as ec
+except BaseException:
+    from . import exit_codes as ec
 
 
 def get_args():
@@ -33,7 +34,7 @@ def run_sql_query_and_download(sdk, slug, file_format):
         print(f"SQL Query {slug} created successfully")
     except Exception as e:
         print(f'Error running create query: {e}')
-        sys.exit(EXIT_CODE_QUERY_ERROR)
+        sys.exit(ec.EXIT_CODE_QUERY_ERROR)
     return response
 
 

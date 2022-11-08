@@ -9,9 +9,11 @@ try:
     import helpers
 except BaseException:
     from . import helpers
-
-
-EXIT_CODE_LOOK_DASHBOARD_ERROR = 205
+try:
+    import exit_codes as ec
+except BaseException:
+    import exit_codes as ec
+ 
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -53,7 +55,7 @@ def download_dashboard(sdk, dashboard_id, width, height, file_format):
         print(
             f'Could not create a render task for "{dashboard_id}"'
         )
-        sys.exit(EXIT_CODE_LOOK_DASHBOARD_ERROR)
+        sys.exit(ec.EXIT_CODE_LOOK_DASHBOARD_ERROR)
     # poll the render task until it completes
     elapsed = 0.0
     delay = 0.5  # wait .5 seconds
@@ -64,7 +66,7 @@ def download_dashboard(sdk, dashboard_id, width, height, file_format):
             print(
                 f'Render failed for "{dashboard_id}"'
             )
-            sys.exit(EXIT_CODE_LOOK_DASHBOARD_ERROR)
+            sys.exit(ec.EXIT_CODE_LOOK_DASHBOARD_ERROR)
         elif poll.status == "success":
             break
 

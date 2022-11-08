@@ -5,10 +5,12 @@ try:
     import helpers
 except BaseException:
     from . import helpers
+try:
+    import exit_codes as ec
+except BaseException:
+    from . import exit_codes as ec
 from looker_sdk import methods40, models40
 
-
-EXIT_CODE_LOOK_QUERY_ERROR = 203
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -35,7 +37,7 @@ def create_sql_query(look_sdk, connection_name, model_name, sql_query):
         print(f"Looker slug {res_slug} created successfully")
     except Exception as e:
         print(f'Error running create query: {e}')
-        sys.exit(EXIT_CODE_LOOK_QUERY_ERROR)
+        sys.exit(ec.EXIT_CODE_LOOK_QUERY_ERROR)
     return res_slug
 
 

@@ -6,9 +6,11 @@ try:
     import helpers
 except BaseException:
     from . import helpers
+try:
+    import exit_codes as ec
+except BaseException:
+    from . import exit_codes as ec
 
-
-EXIT_CODE_LOOK_ERROR = 204
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -36,8 +38,8 @@ def download_look(look_sdk, look_id, file_format):
         )
         print(f"look {look_id} as {file_format} generated successfully")
     except Exception as e:
-      raise Exception(f'Error running look {look_id}: {e}')
-      sys.exit(EXIT_CODE_LOOK_ERROR)
+      print(f"Error running {look_id}: {e}")
+      sys.exit(ec.EXIT_CODE_LOOK_ERROR)
     if type(response) == str:
         response = bytes(response, encoding='utf-8')
     return response
