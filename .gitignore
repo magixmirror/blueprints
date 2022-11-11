@@ -131,3 +131,6 @@ dmypy.json
 # local testing
 .vscode
 env
+test_download
+wespoulsen-artifacts
+old

@@ -18,10 +18,10 @@ def get_args():
     parser.add_argument('--client-id', dest='client_id', required=True)
     parser.add_argument('--client-secret', dest='client_secret', required=True)
     parser.add_argument('--look-id', dest='look_id', required=True)
-    parser.add_argument('--dest-file-name', dest='dest_file_name', required=True)
-    parser.add_argument('--dest-folder-name', dest='dest_folder_name', required=False)
+    parser.add_argument('--destination-file-name', dest='dest_file_name', required=True)
+    parser.add_argument('--destination-folder-name', dest='dest_folder_name', required=False)
     parser.add_argument('--file-type', dest='file_type',
-                        choices=['json','txt','csv', 'json_detail', 'md', 'xslx'
+                        choices=['json','txt','csv', 'json_detail', 'md', 'xlsx'
                                  'sql', 'png', 'jpg'],
                         type=str.lower,
                         required=True)

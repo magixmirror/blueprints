@@ -23,8 +23,8 @@ def get_args():
     parser.add_argument('--dashboard-id', dest='dashboard_id', required=True)
     parser.add_argument('--output-width', dest='output_width', required=True)
     parser.add_argument('--output-height', dest='output_height', required=True)
-    parser.add_argument('--dest-file-name', dest='dest_file_name', required=True)
-    parser.add_argument('--dest-folder-name', dest='dest_folder_name', required=False)
+    parser.add_argument('--destination-file-name', dest='dest_file_name', required=True)
+    parser.add_argument('--destination-folder-name', dest='dest_folder_name', required=False)
     parser.add_argument('--file-type', dest='file_type',
                         choices=['pdf', 'png', 'jpg'],
                         type=str.lower,
