@@ -18,8 +18,8 @@ def get_args():
     parser.add_argument('--client-id', dest='client_id', required=True)
     parser.add_argument('--client-secret', dest='client_secret', required=True)
     parser.add_argument('--slug', dest='slug', required=False)
-    parser.add_argument('--dest-file-name', dest='dest_file_name', required=True)
-    parser.add_argument('--dest-folder-name', dest='dest_folder_name', required=False)
+    parser.add_argument('--destination-file-name', dest='dest_file_name', required=True)
+    parser.add_argument('--destination-folder-name', dest='dest_folder_name', required=False)
     parser.add_argument('--file-type', dest='file_type',
                         choices=['inline_json', 'json', 'json_detail', 'json_fe', 'csv', 'html', 'md', 'txt', 'xlsx', 'gsxml', 'json_label'],
                         type=str.lower,
@@ -60,12 +60,16 @@ def main():
     )
     # generate SDK
     look_sdk = helpers.get_sdk(base_url, client_id, client_secret)
-    if args.slug != "":
+    if args.slug is not None:
         slug = args.slug
     else:
-        artifact_subfolder_paths = helpers.artifact_subfolder_paths
-        slug = shipyard.logs.read_pickle_file(artifact_subfolder_paths, 
-                                                    'slug')
+        try:
+            artifact_subfolder_paths = helpers.artifact_subfolder_paths
+            slug = shipyard.logs.read_pickle_file(artifact_subfolder_paths, 
+                                                        'slug')
+        except Exception as e:
+            print("Error - there was no slug provided and was not found in an upstream vessel. Either enter a slug id for a query already run, or run the 'Create SQL Runner Query' blueprint immediately before this vessel")
+            sys.exit(ec.EXIT_CODE_SLUG_NOT_FOUND)
         
     # download look and write to file
     result = run_sql_query_and_download(look_sdk, slug, file_type)
