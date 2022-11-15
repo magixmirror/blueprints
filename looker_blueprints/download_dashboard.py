@@ -12,8 +12,7 @@ except BaseException:
 try:
     import exit_codes as ec
 except BaseException:
-    import exit_codes as ec
- 
+    from . import exit_codes as ec
 
 def get_args():
     parser = argparse.ArgumentParser()
