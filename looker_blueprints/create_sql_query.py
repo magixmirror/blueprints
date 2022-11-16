@@ -36,7 +36,8 @@ def create_sql_query(look_sdk, connection_name, model_name, sql_query):
         ).slug
         print(f"Looker slug {res_slug} created successfully")
     except Exception as e:
-        print(f'Error running create query: {e}')
+        print(e.args)
+        # print(f'Error running create query: {e.__str__()}')
         sys.exit(ec.EXIT_CODE_LOOK_QUERY_ERROR)
     return res_slug
 
