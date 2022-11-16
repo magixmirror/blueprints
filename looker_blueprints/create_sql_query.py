@@ -30,7 +30,11 @@ def create_sql_query(look_sdk, connection_name, model_name, sql_query):
         model_name=model_name,
         sql=sql_query
     )
+    ## TODO remove later
+    print(sql_body)
     try:
+        ## TODO remove later
+        print(look_sdk.all_looks())
         res_slug = look_sdk.create_sql_query(
             body=sql_body
         ).slug
