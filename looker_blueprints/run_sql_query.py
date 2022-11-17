@@ -60,7 +60,7 @@ def main():
     )
     # generate SDK
     look_sdk = helpers.get_sdk(base_url, client_id, client_secret)
-    if args.slug is not None:
+    if args.slug is not None or args.slug != '':
         print("Reached line 64, slug is not none")
         slug = args.slug
     else:
