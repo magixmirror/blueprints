@@ -21,7 +21,7 @@ def get_args():
     parser.add_argument('--destination-file-name', dest='dest_file_name', required=True)
     parser.add_argument('--destination-folder-name', dest='dest_folder_name', required=False)
     parser.add_argument('--file-type', dest='file_type',
-                        choices=['json','txt','csv', 'json_detail', 'md', 'xlsx'
+                        choices=['json','txt','csv', 'json_detail', 'md', 'xlsx',
                                  'sql', 'png', 'jpg'],
                         type=str.lower,
                         required=True)
@@ -30,6 +30,11 @@ def get_args():
 
 
 def download_look(look_sdk, look_id, file_format):
+    all_looks = look_sdk.all_looks()
+    all_look_ids = list(map(lambda x: x.id, all_looks))
+    if look_id not in all_look_ids:
+        print(f"The look id {look_id} does not exist, please provide a valid look id")
+        sys.exit(ec.EXIT_CODE_INVALID_LOOK_ID)
     try:
         # Options are csv, json, json_detail, txt, html, md, xlsx, sql (raw query), png, jpg
         response = look_sdk.run_look(

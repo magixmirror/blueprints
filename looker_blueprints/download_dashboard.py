@@ -38,17 +38,20 @@ def download_dashboard(sdk, dashboard_id, width, height, file_format):
     Returns:
         result: raw binary data of the dashboard
     """
-    dash_id = dashboard_id
-    task = sdk.create_dashboard_render_task(
-        dash_id,
-        file_format,
-        models.CreateDashboardRenderTask(
-            dashboard_style='tiled',
-            dashboard_filters=None,
-        ),
-        width,
-        height,
-    )
+    try:
+        task = sdk.create_dashboard_render_task(
+            dashboard_id,
+            file_format,
+            models.CreateDashboardRenderTask(
+                dashboard_style='tiled',
+                dashboard_filters=None,
+            ),
+            width,
+            height,
+        )
+    except:
+        print("Error, the provided dashboard id was invalid. Please ensure that the dashboard id is correct.")
+        sys.exit(ec.EXIT_CODE_INVALID_DASHBOARD_ID)
 
     if not (task and task.id):
         print(
@@ -89,8 +92,10 @@ def main():
     dest_folder_name = args.dest_folder_name
     
     # get cwd if no folder name is specified
-    if not dest_folder_name:
+    if dest_folder_name is None or dest_folder_name == '':
         dest_folder_name = os.getcwd()
+    ## create folder if it doesn't exist
+    shipyard.files.create_folder_if_dne(dest_folder_name)
     destination_file_path = shipyard.files.combine_folder_and_file_name(
         dest_folder_name,
         dest_file_name

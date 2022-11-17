@@ -33,8 +33,8 @@ def run_sql_query_and_download(sdk, slug, file_format):
         response = sdk.run_sql_query(slug=slug, result_format=file_format)
         print(f"SQL Query {slug} created successfully")
     except Exception as e:
-        print(f'Error running create query: {e}')
-        sys.exit(ec.EXIT_CODE_LOOK_QUERY_ERROR)
+        print(f'Error running create query, please ensure that slug {slug} is valid in the explore tab of looker')
+        sys.exit(ec.EXIT_CODE_INVALID_SLUG)
     return response
 
 
