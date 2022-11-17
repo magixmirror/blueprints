@@ -45,7 +45,9 @@ def main():
     client_secret = args.client_secret
     file_type = args.file_type
     dest_file_name = args.dest_file_name
-
+    arg_slug = args.slug
+    if arg_slug == '':
+        arg_slug = None
     # get cwd if no folder name is specified
     if args.dest_folder_name:
         # create folder path if non-existent
@@ -60,7 +62,7 @@ def main():
     )
     # generate SDK
     look_sdk = helpers.get_sdk(base_url, client_id, client_secret)
-    if args.slug is not None or args.slug != '':
+    if args.slug is not None:
         print("Reached line 64, slug is not none")
         slug = args.slug
     else:
