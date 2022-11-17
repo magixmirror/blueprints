@@ -61,9 +61,11 @@ def main():
     # generate SDK
     look_sdk = helpers.get_sdk(base_url, client_id, client_secret)
     if args.slug is not None:
+        print("Reached line 64, slug is not none")
         slug = args.slug
     else:
         try:
+            print("Reached line 68, slug is being read by pickle file")
             artifact_subfolder_paths = helpers.artifact_subfolder_paths
             slug = shipyard.logs.read_pickle_file(artifact_subfolder_paths, 
                                                         'slug')
