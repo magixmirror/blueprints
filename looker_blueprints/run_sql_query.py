@@ -34,7 +34,7 @@ def run_sql_query_and_download(sdk, slug, file_format):
         print(f"SQL Query {slug} created successfully")
     except Exception as e:
         print(f'Error running create query: {e}')
-        sys.exit(ec.EXIT_CODE_QUERY_ERROR)
+        sys.exit(ec.EXIT_CODE_LOOK_QUERY_ERROR)
     return response
 
 
@@ -72,6 +72,7 @@ def main():
             sys.exit(ec.EXIT_CODE_SLUG_NOT_FOUND)
         
     # download look and write to file
+    print(f"The slug is {slug}")
     result = run_sql_query_and_download(look_sdk, slug, file_type)
     
     with open(destination_file_path, 'wb+') as f:
