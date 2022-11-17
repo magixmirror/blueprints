@@ -62,9 +62,9 @@ def main():
     )
     # generate SDK
     look_sdk = helpers.get_sdk(base_url, client_id, client_secret)
-    if args.slug is not None:
+    if arg_slug is not None:
         print("Reached line 64, slug is not none")
-        slug = args.slug
+        slug = arg_slug
     else:
         try:
             print("Reached line 68, slug is being read by pickle file")
