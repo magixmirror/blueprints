@@ -63,11 +63,9 @@ def main():
     # generate SDK
     look_sdk = helpers.get_sdk(base_url, client_id, client_secret)
     if arg_slug is not None:
-        print("Reached line 64, slug is not none")
         slug = arg_slug
     else:
         try:
-            print("Reached line 68, slug is being read by pickle file")
             artifact_subfolder_paths = helpers.artifact_subfolder_paths
             slug = shipyard.logs.read_pickle_file(artifact_subfolder_paths, 
                                                         'slug')
@@ -76,7 +74,6 @@ def main():
             sys.exit(ec.EXIT_CODE_SLUG_NOT_FOUND)
         
     # download look and write to file
-    print(f"The slug is {slug}")
     result = run_sql_query_and_download(look_sdk, slug, file_type)
     
     with open(destination_file_path, 'wb+') as f:
